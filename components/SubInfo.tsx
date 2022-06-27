@@ -3,18 +3,50 @@ import React from 'react';
 import {Image, ImageSourcePropType, Text, View} from 'react-native';
 import {assets, COLORS, FONTS, SHADOWS, SIZES} from '../constants';
 
-export const NFTTitle = (): JSX.Element => {
+export const NFTTitle = ({
+  title,
+  subTitle,
+  titleSize,
+  subtitleSize,
+}: any): JSX.Element => {
   return (
     <View>
-      <Text>NFTTitle</Text>
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: titleSize,
+          color: COLORS.primary,
+        }}>
+        {title}
+      </Text>
+      <Text
+        style={{
+          fontFamily: FONTS.regular,
+          fontSize: subtitleSize,
+          color: COLORS.primary,
+        }}>
+        {subTitle}
+      </Text>
     </View>
   );
 };
 
-export const EthPrice = (): JSX.Element => {
+export const EthPrice = ({price}): JSX.Element => {
   return (
-    <View>
-      <Text>EthPrice</Text>
+    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <Image
+        source={assets.eth}
+        resizeMode="contain"
+        style={{width: 20, height: 20, marginRight: 2}}
+      />
+      <Text
+        style={{
+          fontFamily: FONTS.medium,
+          fontSize: SIZES.font,
+          color: COLORS.primary,
+        }}>
+        {price}
+      </Text>
     </View>
   );
 };
@@ -48,7 +80,22 @@ export const EndDate = (): JSX.Element => {
         elevation: 1,
         maxWidth: '50%',
       }}>
-      <Text>EndDate</Text>
+      <Text
+        style={{
+          fontFamily: FONTS.regular,
+          fontSize: SIZES.small,
+          color: COLORS.primary,
+        }}>
+        Ending In
+      </Text>
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: SIZES.medium,
+          color: COLORS.primary,
+        }}>
+        12h 30m
+      </Text>
     </View>
   );
 };

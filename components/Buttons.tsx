@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, Image} from 'react-native';
-import {COLORS, SHADOWS, SIZES} from '../constants';
+import {COLORS, FONTS, SHADOWS, SIZES} from '../constants';
 
 export const Button = (): JSX.Element => {
   return (
@@ -10,11 +10,22 @@ export const Button = (): JSX.Element => {
   );
 };
 
-export const RectButton = (): JSX.Element => {
+export const RectButton = ({
+  minWidth,
+  fontSize,
+  handlePress,
+  ...props
+}: {
+  minWidth: string;
+  handlePress: () => {};
+  fontSize: number;
+}): JSX.Element => {
   return (
-    <View>
-      <Text>Button</Text>
-    </View>
+    <TouchableOpacity
+      onPress={handlePress}
+      style={{...styles.RectButton.touchableOpacity, minWidth, ...props}}>
+      <Text style={{...styles.RectButton.text, fontSize}}>Place a bid</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -37,6 +48,18 @@ export const CircleButton = ({
 };
 
 const styles = {
+  RectButton: {
+    touchableOpacity: {
+      backgroundColor: COLORS.primary,
+      borderRadius: SIZES.extraLarge,
+      padding: SIZES.small,
+    },
+    text: {
+      fontFamily: FONTS.semiBold,
+      color: COLORS.white,
+      textAlign: 'center',
+    },
+  },
   circleButton: {
     touchableOpacity: {
       width: 40,

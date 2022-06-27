@@ -2,8 +2,9 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {View, Image} from 'react-native';
 import {CircleButton} from '.';
-import {assets, COLORS, SHADOWS, SIZES} from '../constants';
-import {SubInfo} from './SubInfo';
+import {assets, COLORS, FONTS, SHADOWS, SIZES} from '../constants';
+import {RectButton} from './Buttons';
+import {EthPrice, NFTTitle, SubInfo} from './SubInfo';
 
 export default function NFTCard({data}: any): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,7 +15,31 @@ export default function NFTCard({data}: any): JSX.Element {
       <View style={styles.card}>
         <Image source={data.image} resizeMode="cover" style={styles.image} />
         <CircleButton imgUrl={assets.heart} right={10} top={10} />
-        <SubInfo />
+      </View>
+      <SubInfo />
+
+      <View style={{width: '100%', padding: SIZES.font}}>
+        <NFTTitle
+          title={data.name}
+          subTitle={data.creator}
+          titleSize={SIZES.large}
+          subtitleSize={SIZES.small}
+        />
+
+        <View
+          style={{
+            marginTop: SIZES.font,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <EthPrice price={data.price} />
+          <RectButton
+            minWidth={120}
+            fontSize={SIZES.font}
+            handlePress={() => navigation.navigate('Details', {data})}
+          />
+        </View>
       </View>
     </View>
   );
